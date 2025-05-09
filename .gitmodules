@@ -1,0 +1,3 @@
+[submodule "nvbandwidth"]
+	path = nvbandwidth
+	url = git@github.com:NVIDIA/nvbandwidth.git
