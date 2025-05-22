@@ -1,56 +1,155 @@
-# benchmark_RTX3050
-本代码库用来对个人笔记本电脑低端显卡GeForce RTX 3050 4GB的
-dram_bandwidth
-dram_latency
-l2cache_bandwidth
-l2cache_latency
-l1cache_latency
-smem_latency
-...(待补充)...
-进行测试，争取达到精准，以提高对硬件更深的理解
+nvbandwidth Version: v0.8
+Built from Git version: v0.8
 
-chatgpt指导意见链接：https://chatgpt.com/share/680e37af-35c0-8012-b10d-58c6d6d809f1
+CUDA Runtime Version: 12080
+CUDA Driver Version: 12080
+Driver Version: 572.83
 
-相关spec：https://www.techpowerup.com/gpu-specs/geforce-rtx-3050-4-gb.c3744
+darrenlu
+Device 0: NVIDIA GeForce RTX 3050 Laptop GPU (00000000:01:00)
 
-## dram_bandwidth
-这里的dram其实也就是vram，即显存，带宽的定义如下（from 《CUDA C 编程权威指南》）：
-1. 有效带宽（GB/s）=（读字节数+写字节数）*1e-9/运行时间
-2. 理论带宽：当前硬件可以实现的绝对最大带宽
+Running host_to_device_memcpy_ce.
+memcpy CE CPU(row) -> GPU(column) bandwidth (GB/s)
+           0
+ 0     12.98
 
-我的笔记本RTX3050的显存大小是4GB，从上述spec链接可以看到相关信息是：
-```
-Memory Size 4 GB
-Memory Type GDDR6
-Memory Bus 128 bit
-Bandwidth 192.0 GB/s
-```
-测试带宽采用cuda-samples里提供的程序：https://github.com/NVIDIA/cuda-samples/tree/master/Samples/1_Utilities/bandwidthTest
+SUM host_to_device_memcpy_ce 12.98
 
-运行结果如下：
-```
-[CUDA Bandwidth Test] - Starting...
-Running on...
+Running device_to_host_memcpy_ce.
+memcpy CE CPU(row) <- GPU(column) bandwidth (GB/s)
+           0
+ 0     13.17
 
- Device 0: NVIDIA GeForce RTX 3050 Laptop GPU
- Quick Mode
+SUM device_to_host_memcpy_ce 13.17
 
- Host to Device Bandwidth, 1 Device(s)
- PINNED Memory Transfers
-   Transfer Size (Bytes)        Bandwidth(GB/s)
-   32000000                     13.0
+Running host_to_device_bidirectional_memcpy_ce.
+memcpy CE CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0     12.66
 
- Device to Host Bandwidth, 1 Device(s)
- PINNED Memory Transfers
-   Transfer Size (Bytes)        Bandwidth(GB/s)
-   32000000                     13.2
+SUM host_to_device_bidirectional_memcpy_ce 12.66
 
- Device to Device Bandwidth, 1 Device(s)
- PINNED Memory Transfers
-   Transfer Size (Bytes)        Bandwidth(GB/s)
-   32000000                     181.4
+Running device_to_host_bidirectional_memcpy_ce.
+memcpy CE CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0     11.06
 
-Result = PASS
+SUM device_to_host_bidirectional_memcpy_ce 11.06
 
-NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
-```
+Waived: 
+Waived: 
+Waived: 
+Waived: 
+Running all_to_host_memcpy_ce.
+memcpy CE CPU(row) <- GPU(column) bandwidth (GB/s)
+           0
+ 0     13.18
+
+SUM all_to_host_memcpy_ce 13.18
+
+Running all_to_host_bidirectional_memcpy_ce.
+memcpy CE CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0     11.07
+
+SUM all_to_host_bidirectional_memcpy_ce 11.07
+
+Running host_to_all_memcpy_ce.
+memcpy CE CPU(row) -> GPU(column) bandwidth (GB/s)
+           0
+ 0     12.96
+
+SUM host_to_all_memcpy_ce 12.96
+
+Running host_to_all_bidirectional_memcpy_ce.
+memcpy CE CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0     11.39
+
+SUM host_to_all_bidirectional_memcpy_ce 11.39
+
+Waived: 
+Waived: 
+Waived: 
+Waived: 
+Running host_to_device_memcpy_sm.
+memcpy SM CPU(row) -> GPU(column) bandwidth (GB/s)
+           0
+ 0      9.95
+
+SUM host_to_device_memcpy_sm 9.95
+
+Running device_to_host_memcpy_sm.
+memcpy SM CPU(row) <- GPU(column) bandwidth (GB/s)
+           0
+ 0      8.76
+
+SUM device_to_host_memcpy_sm 8.76
+
+Running host_to_device_bidirectional_memcpy_sm.
+memcpy SM CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0      7.33
+
+SUM host_to_device_bidirectional_memcpy_sm 7.33
+
+Running device_to_host_bidirectional_memcpy_sm.
+memcpy SM CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0      7.36
+
+SUM device_to_host_bidirectional_memcpy_sm 7.36
+
+Waived: 
+Waived: 
+Waived: 
+Waived: 
+Running all_to_host_memcpy_sm.
+memcpy SM CPU(row) <- GPU(column) bandwidth (GB/s)
+           0
+ 0      8.79
+
+SUM all_to_host_memcpy_sm 8.79
+
+Running all_to_host_bidirectional_memcpy_sm.
+memcpy SM CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0      7.40
+
+SUM all_to_host_bidirectional_memcpy_sm 7.40
+
+Running host_to_all_memcpy_sm.
+memcpy SM CPU(row) -> GPU(column) bandwidth (GB/s)
+           0
+ 0      9.95
+
+SUM host_to_all_memcpy_sm 9.95
+
+Running host_to_all_bidirectional_memcpy_sm.
+memcpy SM CPU(row) <-> GPU(column) bandwidth (GB/s)
+           0
+ 0      7.39
+
+SUM host_to_all_bidirectional_memcpy_sm 7.39
+
+Waived: 
+Waived: 
+Waived: 
+Waived: 
+Running host_device_latency_sm.
+memory latency SM CPU(row) <-> GPU(column) (ns)
+           0
+ 0    613.22
+
+SUM host_device_latency_sm 613.22
+
+Waived: 
+Running device_local_copy.
+memcpy local GPU(column) bandwidth (GB/s)
+           0
+ 0     84.33
+
+SUM device_local_copy 84.33
+
+NOTE: The reported results may not reflect the full capabilities of the platform.
+Performance can vary with software drivers, hardware clocks, and system topology.
